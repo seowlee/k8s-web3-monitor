@@ -1,0 +1,14 @@
+{
+  "name": "usdt-worker",
+  "version": "1.0.0",
+  "description": "Kubernetes-based Web3 USDT Transfer worker",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "dependencies": {
+    "ioredis": "^5.4.1",
+    "mongodb": "^6.3.0",
+    "dotenv": "^16.3.1"
+  }
+}

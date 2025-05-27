@@ -1,0 +1,15 @@
+{
+  "name": "usdt-listener",
+  "version": "1.0.0",
+  "description": "Kubernetes-based Web3 USDT Transfer Listener",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "dependencies": {
+    "ethers": "^6.11.1",
+    "ioredis": "^5.4.1",
+    "mongodb": "^6.3.0",
+    "dotenv": "^16.3.1"
+  }
+}

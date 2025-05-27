@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: usdt-listener
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: usdt-listener
+  template:
+    metadata:
+      labels:
+        app: usdt-listener
+    spec:
+      containers:
+        - name: usdt-listener
+          image: seowlee/usdt-listener:latest
+          env:
+            - name: RPC_URL
+              value: "https://ethereum-rpc.publicnode.com"
+            - name: REDIS_URL
+              value: "redis://redis-service:6379"
+          restartPolicy: Always
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: usdt-listener-service
+spec:
+  selector:
+    app: usdt-listener
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 3000 # ⚠️ 내부 포트를 열지 않았다면 생략 가능
+  type: ClusterIP

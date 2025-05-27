@@ -1,0 +1,42 @@
+version: "3.9"
+
+services:
+  redis:
+    image: redis:7
+    container_name: redis
+    ports:
+      - "6379:6379"
+
+  mongo:
+    image: mongo:6.0
+    container_name: mongo
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo-data:/data/db
+
+  listener:
+    build: ./listener
+    container_name: listener
+    depends_on:
+      - redis
+    environment:
+      - RPC_URL=https://ethereum-rpc.publicnode.com
+      - REDIS_URL=redis://redis:6379
+    restart: unless-stopped
+
+  worker:
+    build: ./worker
+    container_name: worker
+    depends_on:
+      - redis
+      - mongo
+    environment:
+      - REDIS_URL=redis://redis:6379
+      - MONGO_URL=mongodb://mongo:27017
+      - MONGO_DB=web3monitor
+      - MONGO_COLLECTION=usdtTransfers
+    restart: unless-stopped
+
+volumes:
+  mongo-data:
