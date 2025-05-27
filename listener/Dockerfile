@@ -12,7 +12,7 @@ RUN npm install
 COPY . .
 
 # 포트 지정 (Web이 아닌 Listener라 생략 가능)
-# EXPOSE 3000
+EXPOSE 3000
 
 # 실행
 CMD ["node", "index.js"]

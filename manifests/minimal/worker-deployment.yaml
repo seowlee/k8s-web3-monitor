@@ -12,6 +12,7 @@ spec:
       labels:
         app: usdt-worker
     spec:
+      restartPolicy: Always
       containers:
         - name: usdt-worker
           image: seowlee/usdt-worker:latest
@@ -24,4 +25,3 @@ spec:
               value: "web3monitor"
             - name: MONGO_COLLECTION
               value: "usdtTransfers"
-          restartPolicy: Always

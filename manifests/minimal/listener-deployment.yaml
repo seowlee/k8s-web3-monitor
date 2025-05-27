@@ -12,6 +12,7 @@ spec:
       labels:
         app: usdt-listener
     spec:
+      restartPolicy: Always
       containers:
         - name: usdt-listener
           image: seowlee/usdt-listener:latest
@@ -20,7 +21,6 @@ spec:
               value: "https://ethereum-rpc.publicnode.com"
             - name: REDIS_URL
               value: "redis://redis-service:6379"
-          restartPolicy: Always
 ---
 apiVersion: v1
 kind: Service

@@ -67,4 +67,18 @@ async function startListener() {
   }
 }
 
+// 기존 startListener() 이후 추가
 startListener().catch(console.error);
+
+// ✅ 아래는 브라우저 확인용 Express 서버 추가
+const express = require("express");
+const app = express();
+const port = 3000;
+
+app.get("/", (req, res) => {
+  res.send("✅ USDT Listener is Running!");
+});
+
+app.listen(port, () => {
+  console.log(`🚀 Express server listening on port ${port}`);
+});
